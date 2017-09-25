@@ -51,8 +51,8 @@ public interface ServiciosPacientes {
     public abstract List<Paciente> consultarPacientes() throws ExcepcionServiciosPacientes;
     
     /**
-     * Registra un nuevo PACIENTE en el sistema
-     * @param paciente El nuevo paciente
+     * Registra un nuevo paciente en el sistema
+     * @param paciente El nuevo paciente a registrar.
      * @throws ExcepcionServiciosPacientes error en la persistencia al momento de registrar un nuevo paciente
      */
     public abstract void registrarNuevoPaciente(Paciente paciente) throws ExcepcionServiciosPacientes;
