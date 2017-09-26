@@ -10,6 +10,10 @@ import edu.eci.pdsw.samples.entities.Eps;
 import edu.eci.pdsw.samples.entities.Paciente;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
 import edu.eci.pdsw.samples.services.impl.ServiciosPacientesMock;
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -55,8 +59,25 @@ public class ServiciosPacientesTest {
         }catch(ExcepcionServiciosPacientes e){
             assertEquals(e.getMessage(), "Paciente 123 no esta registrado");
         }
-    }      
+    }
+
+    @Test 
+    public void testFechaRegistradaDebeSerMenorAFechaActual() throws ParseException{
+        Consulta con = new Consulta(java.sql.Date.valueOf("2000-01-01"), "Dolor de cabeza", 454);
+        SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date actual= new Date();
+        Date registrada= con.getFechayHora();
+        String fechaActual = f1.format(actual);
+        String fechaRegistrada = f1.format(registrada);
         
+        SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date nueva = (Date) f2.parse(fechaActual);
+        Date vieja = (Date) f2.parse(fechaRegistrada);
+        boolean res = vieja.before(nueva);
+        assertTrue(res);
+        
+    } 
+    
     @Test 
     public void testPacienteDebeTenerNombre() throws ExcepcionServiciosPacientes{
         ServiciosPacientesMock sm2 = new ServiciosPacientesMock();
@@ -67,4 +88,4 @@ public class ServiciosPacientesTest {
         
     }
     
-}
+    }
