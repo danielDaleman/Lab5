@@ -31,8 +31,8 @@ import static org.junit.Assert.*;
  *    
  * 
  * CLASES DE EQUIVALENCIA METODO REGISTRO DE PACIENTES
- *      CE1: Resgistrar paciente sin ningun dato
- *           Respuesta esperada: Error
+ *      CE1: El paciente debe tener que tipp de id tiene
+ *           Respuesta esperada: True
  *      CE2: Que paciente tenga nombre
  *           Respuesta esperada= True
  *      
@@ -51,7 +51,7 @@ public class ServiciosPacientesTest {
     @Test 
     public void testPacienteNoRegistrado() throws ExcepcionServiciosPacientes{
         ServiciosPacientesMock sm = new ServiciosPacientesMock();
-        Consulta c = new Consulta(java.sql.Date.valueOf("2000-01-01"), "Dolor de estomago", 454);
+        Consulta c = new Consulta(new Date(2000,01,01), "Dolor de estomago", 454);
         try{
             sm.agregarConsultaPaciente(123, "cc", c);
         }catch(ExcepcionServiciosPacientes e){
@@ -88,25 +88,16 @@ public class ServiciosPacientesTest {
     }
     
     @Test
-    public void testPacienteSinDatos() throws ExcepcionServiciosPacientes{
+    public void testPacienteDebeTenerTipoId() throws ExcepcionServiciosPacientes{
         ServiciosPacientesMock sm2 = new ServiciosPacientesMock();
-        Eps eps1 = null;
-        Paciente paciente1 = null;
-        try{
-            sm2.registrarNuevoPaciente(paciente1);                    
-        }catch(ExcepcionServiciosPacientes e){
-            assertEquals(e.getMessage(), "El paciente no tiene ningun dato para ser registrado");
-        }
-    }
+        Eps eps1 = new Eps("Compensar", "7289374982-0");
+        Paciente paciente1 = new Paciente(1111,"CC", "Juan", java.sql.Date.valueOf("2000-01-01"), eps1);
+        sm2.registrarNuevoPaciente(paciente1);
+        assertNotEquals(paciente1.getTipoId() ,"");
+    }  
+}
 
- 
 
-        
-        
-        
-        
-        
-    }
 
     
 

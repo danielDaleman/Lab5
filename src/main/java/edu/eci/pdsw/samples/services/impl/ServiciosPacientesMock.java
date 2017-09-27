@@ -45,7 +45,7 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
     public ServiciosPacientesMock() {
         this.pacientes = new LinkedHashMap<>();
         epsregistradas = new LinkedList<>();
-        //cargarDatosEstaticos(pacientes);
+        cargarDatosEstaticos(pacientes);
     }
 
     @Override
@@ -61,9 +61,8 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
 
     @Override
     public void registrarNuevoPaciente(Paciente paciente) throws ExcepcionServiciosPacientes {
-        if(paciente!=null){
+        if(paciente != null){
             pacientes.put(new Tupla<>(paciente.getId(), paciente.getTipoId()), paciente);
-            System.out.println("reg:"+new Tupla<>(paciente.getId(), paciente.getTipoId()));
         }else{
             throw new ExcepcionServiciosPacientes("El paciente no tiene ningun dato para ser registrado");
         }
@@ -72,7 +71,7 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
 
     @Override
     public void agregarConsultaPaciente(int idPaciente, String tipoid, Consulta consulta) throws ExcepcionServiciosPacientes {
-        System.out.println("add:"+new Tupla<>(idPaciente, tipoid));
+        
         Paciente paciente = pacientes.get(new Tupla<>(idPaciente, tipoid));
         if (paciente != null) {
             consulta.setId(idconsulta);
