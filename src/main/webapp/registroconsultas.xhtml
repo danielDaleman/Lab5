@@ -5,6 +5,34 @@
     <h:head></h:head>
 
     <h:body>
+        <p:layoutUnit position="west">
+            <h3>Basic</h3>
+            <p:panelGrid columns="2">
+ 
+                <h:outputText value="Name:" />
+                <h:outputText value="#{HistorialPacientes.consulta} />
+ 
+                <h:outputText value="Team:" />
+                <h:outputText value="Los Angeles Lakers" />
+ 
+                <h:outputText value="Position:" />
+                <h:outputText value="Shooting Guard" />
+ 
+                <h:outputText value="Number:" />
+                <h:outputText value="24" />
+            </p:panelGrid>
+            
+        </p:layoutUnit>
+        
+        <p:layoutUnit position="east">
+            
+            <p:dataTable var="ListaConsultas" value= "#{HistorialPacientes.servicepacientes}">
+                <p:column headerText="Numero de Consulta">      
+                    
+            </p:dataTable>
+        </p:layoutUnit>
+        
+        
     </h:body>
 
 </html>
