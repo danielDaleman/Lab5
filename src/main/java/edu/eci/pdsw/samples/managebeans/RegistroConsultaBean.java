@@ -7,6 +7,7 @@ package edu.eci.pdsw.samples.managebeans;
 
 
 import edu.eci.pdsw.samples.entities.Consulta;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
 import edu.eci.pdsw.samples.services.ServiciosHistorialPacientesFactory;
 import edu.eci.pdsw.samples.services.ServiciosPacientes;
 
@@ -28,57 +29,58 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "HistorialPacientes")
 @SessionScoped
+
 public class RegistroConsultaBean implements Serializable {
 
     private final ServiciosPacientes servicepacientes = ServiciosHistorialPacientesFactory.getInstance().getServiciosPaciente();
-    private Consulta cons;
-    Set<Consulta> consultas=new LinkedHashSet<>();;
-    private int identificador;
-    private Date fecha;
-    private String descripcion;
+    private Consulta consulta;
+    Set<Consulta> listaConsultas=new LinkedHashSet<>();;
+    private int idConsulta;
+    private Date fechaConsulta;
+    private String descripcionConsulta;
     private long costo;
 
     public RegistroConsultaBean() {
     }
-    
-    public Consulta getCon() {
-        return cons;
-    }
-
-    public void setCon(Consulta con) {
-        this.cons = con;
-    }
 
     public Consulta getConsulta() {
-        return cons;
+        return consulta;
     }
 
     public void setConsulta(Consulta consulta) {
-        this.cons = consulta;
+        this.consulta = consulta;
     }
 
-    public int getIdentificador() {
-        return identificador;
+    public Set<Consulta> getListaConsultas() {
+        return listaConsultas;
     }
 
-    public void setIdentificador(int identificador) {
-        this.identificador = identificador;
+    public void setListaConsultas(Set<Consulta> listaConsultas) {
+        this.listaConsultas = listaConsultas;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public int getIdConsulta() {
+        return idConsulta;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setIdConsulta(int idConsulta) {
+        this.idConsulta = idConsulta;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public Date getFechaConsulta() {
+        return fechaConsulta;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setFechaConsulta(Date fechaConsulta) {
+        this.fechaConsulta = fechaConsulta;
+    }
+
+    public String getDescripcionConsulta() {
+        return descripcionConsulta;
+    }
+
+    public void setDescripcionConsulta(String descripcionConsulta) {
+        this.descripcionConsulta = descripcionConsulta;
     }
 
     public long getCosto() {
@@ -89,17 +91,22 @@ public class RegistroConsultaBean implements Serializable {
         this.costo = costo;
     }
     
+    
+    
+    
     public void showMessage(String estado, String mensaje) {
         FacesMessage message;
         message = new FacesMessage(FacesMessage.SEVERITY_INFO, estado, mensaje);
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
+    
+    public void agregarConsulta() throws ExcepcionServiciosPacientes{
+        consulta = new Consulta();     
+        listaConsultas.add(consulta);
+        servicepacientes.agregarConsultaPaciente(idConsulta, descripcionConsulta, consulta);
 
-    public ServiciosPacientes getServicepacientes() {
-        return servicepacientes;
     }
-    
-    
+
 
 
 }

@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author hcadavid
+ * @author Daniel Castiblanco  & Daniel Moreno
  * 
  * CLASES DE EQUIVALENCIA METODO REGISTRO DE CONSULTAS
  *      CE1: Paciente no registrado
@@ -28,9 +28,7 @@ import static org.junit.Assert.*;
  *      
  *      CE2: La fecha final sea mayor a la fecha incial
  *           Respuesta esperada: True 
- *      
- *      CE3: Que el paciente  ya existe
- *           Respuesta esperada: Una Excepcion
+ *    
  * 
  * CLASES DE EQUIVALENCIA METODO REGISTRO DE PACIENTES
  *      CE1:  Registro de paciente existente
@@ -76,7 +74,8 @@ public class ServiciosPacientesTest {
         boolean res = vieja.before(nueva);
         assertTrue(res);
         
-    } 
+    }
+    
     
     @Test 
     public void testPacienteDebeTenerNombre() throws ExcepcionServiciosPacientes{
