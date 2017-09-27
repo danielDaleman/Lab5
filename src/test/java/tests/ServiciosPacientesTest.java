@@ -31,8 +31,8 @@ import static org.junit.Assert.*;
  *    
  * 
  * CLASES DE EQUIVALENCIA METODO REGISTRO DE PACIENTES
- *      CE1:  Registro de paciente existente
- *           Respuesta esperada: Una Excepcion   
+ *      CE1: Resgistrar paciente sin ningun dato
+ *           Respuesta esperada: Error
  *      CE2: Que paciente tenga nombre
  *           Respuesta esperada= True
  *      
@@ -87,4 +87,27 @@ public class ServiciosPacientesTest {
         
     }
     
+    @Test
+    public void testPacienteSinDatos() throws ExcepcionServiciosPacientes{
+        ServiciosPacientesMock sm2 = new ServiciosPacientesMock();
+        Eps eps1 = null;
+        Paciente paciente1 = null;
+        try{
+            sm2.registrarNuevoPaciente(paciente1);                    
+        }catch(ExcepcionServiciosPacientes e){
+            assertEquals(e.getMessage(), "El paciente no tiene ningun dato para ser registrado");
+        }
     }
+
+ 
+
+        
+        
+        
+        
+        
+    }
+
+    
+
+

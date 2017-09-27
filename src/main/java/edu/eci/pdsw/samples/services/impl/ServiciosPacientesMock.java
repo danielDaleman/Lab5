@@ -61,9 +61,13 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
 
     @Override
     public void registrarNuevoPaciente(Paciente paciente) throws ExcepcionServiciosPacientes {
+        if(paciente!=null){
+            pacientes.put(new Tupla<>(paciente.getId(), paciente.getTipoId()), paciente);
+            System.out.println("reg:"+new Tupla<>(paciente.getId(), paciente.getTipoId()));
+        }else{
+            throw new ExcepcionServiciosPacientes("El paciente no tiene ningun dato para ser registrado");
+        }
         
-        pacientes.put(new Tupla<>(paciente.getId(), paciente.getTipoId()), paciente);
-        System.out.println("reg:"+new Tupla<>(paciente.getId(), paciente.getTipoId()));
     }
 
     @Override
