@@ -14,6 +14,7 @@ import edu.eci.pdsw.samples.services.ServiciosHistorialPacientesFactory;
 import edu.eci.pdsw.samples.services.ServiciosPacientes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -53,7 +54,16 @@ public class RegistroConsultaBean implements Serializable {
     private Date fechaNacimiento;
     private Eps eps;
     private final List<Eps> epsRegistradas;
+    private String nombreEps;
 
+    public String getNombreEps() {
+        return nombreEps;
+    }
+
+    public void setNombreEps(String nombreEps) {
+        this.nombreEps = nombreEps;
+    }
+    
     @Override
     public String toString() {
         return "RegistroConsultaBean{" + "epsRegistradas=" + epsRegistradas + '}';
@@ -119,12 +129,21 @@ public class RegistroConsultaBean implements Serializable {
         this.eps = eps;
     }                
     
+    
+    public List<String> getEpsNombres() throws ExcepcionServiciosPacientes{
         
-    public void agregarPaciente() throws ExcepcionServiciosPacientes{
-        this.eps = new Eps("Compensar","12345");        
-        paciente = new Paciente(idPaciente,tipoidPaciente, nombrePaciente ,fechaNacimiento,eps);
+        ArrayList<String> nombresEps = new ArrayList<>();
+        for(Eps e: servicepacientes.obtenerEPSsRegistradas())
+            nombresEps.add(e.getNombre());
+        return nombresEps;
+    }
+        
+    public void agregarPaciente() throws ExcepcionServiciosPacientes{        
+        
+        paciente = new Paciente(idPaciente,tipoidPaciente, nombrePaciente ,fechaNacimiento,servicepacientes.obtenerEps(nombreEps));
         listaPacientes.add(paciente);
         servicepacientes.registrarNuevoPaciente(paciente);
+        
     }
 
     //Consultas     

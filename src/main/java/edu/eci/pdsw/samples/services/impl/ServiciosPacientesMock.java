@@ -197,6 +197,16 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
         return epsregistradas;
     }
 
+    public Eps obtenerEps(String nombreEps) {
+        
+        for(Eps e: epsregistradas){
+            if(e.getNombre().equals(nombreEps)){
+                return e;
+            }
+        }        
+        return null;
+    }
+
 }
 
 class Tupla<A, B> {

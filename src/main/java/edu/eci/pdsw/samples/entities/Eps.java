@@ -5,10 +5,15 @@
  */
 package edu.eci.pdsw.samples.entities;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  *
  * @author Martin
  */
+@ManagedBean(name = "Eps")
+@SessionScoped
 public class Eps {
     
     private String nombre;
