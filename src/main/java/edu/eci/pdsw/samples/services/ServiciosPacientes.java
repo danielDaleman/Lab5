@@ -106,6 +106,8 @@ public interface ServiciosPacientes {
      * o de persistencia.
      */
     public abstract List<Eps> obtenerEPSsRegistradas() throws ExcepcionServiciosPacientes;
+
+    public Eps obtenerEps(String nombreEps);
     
     
     
