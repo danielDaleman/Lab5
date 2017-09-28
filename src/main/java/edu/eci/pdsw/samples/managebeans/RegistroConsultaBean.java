@@ -7,6 +7,7 @@ package edu.eci.pdsw.samples.managebeans;
 
 
 import edu.eci.pdsw.samples.entities.Consulta;
+import edu.eci.pdsw.samples.entities.Eps;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
 import edu.eci.pdsw.samples.services.ServiciosHistorialPacientesFactory;
 import edu.eci.pdsw.samples.services.ServiciosPacientes;
@@ -39,10 +40,63 @@ public class RegistroConsultaBean implements Serializable {
     private Date fechaConsulta;
     private String descripcionConsulta;
     private long costo;
+    
+    //Datos Paciente
+    private int idPaciente;
+    private String tipoidPaciente;
+    private String nombrePaciente;
+    private Date fechaNacimiento;
+    private Eps eps;
+    
 
     public RegistroConsultaBean() {
     }
+    //Pacientes
+    public int getIdPaciente() {
+        return idPaciente;
+    }
 
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
+    }
+
+    public String getTipoidPaciente() {
+        return tipoidPaciente;
+    }
+
+    public void setTipoidPaciente(String tipoidPaciente) {
+        this.tipoidPaciente = tipoidPaciente;
+    }
+
+    public String getNombrePaciente() {
+        return nombrePaciente;
+    }
+
+    public void setNombrePaciente(String nombrePaciente) {
+        this.nombrePaciente = nombrePaciente;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Eps getEps() {
+        return eps;
+    }
+
+    public void setEps(Eps eps) {
+        this.eps = eps;
+    }
+    
+    public void registrarPacientes(){
+    
+    }
+
+    //Consultas     
     public Consulta getConsulta() {
         return consulta;
     }
