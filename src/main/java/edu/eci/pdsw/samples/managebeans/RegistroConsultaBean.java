@@ -8,6 +8,7 @@ package edu.eci.pdsw.samples.managebeans;
 
 import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Eps;
+import edu.eci.pdsw.samples.entities.Paciente;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosPacientes;
 import edu.eci.pdsw.samples.services.ServiciosHistorialPacientesFactory;
 import edu.eci.pdsw.samples.services.ServiciosPacientes;
@@ -15,6 +16,7 @@ import edu.eci.pdsw.samples.services.ServiciosPacientes;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.faces.application.FacesMessage;
@@ -41,15 +43,31 @@ public class RegistroConsultaBean implements Serializable {
     private String descripcionConsulta;
     private long costo;
     
+    
     //Datos Paciente
     private int idPaciente;
     private String tipoidPaciente;
     private String nombrePaciente;
     private Date fechaNacimiento;
     private Eps eps;
-    
+    private final List<Eps> epsRegistradas;
+    private Paciente paciente;
+    Set<Paciente> listaPacientes=new LinkedHashSet<>();;
 
-    public RegistroConsultaBean() {
+    public Set<Paciente> getListaPacientes() {
+        return listaPacientes;
+    }
+
+    public void setListaPacientes(Set<Paciente> listaPacientes) {
+        this.listaPacientes = listaPacientes;
+    }
+
+    public List<Eps> getEpsRegistradas() {
+        return epsRegistradas;
+    }
+
+    public RegistroConsultaBean() throws ExcepcionServiciosPacientes {
+         epsRegistradas = servicepacientes.obtenerEPSsRegistradas(); 
     }
     //Pacientes
     public int getIdPaciente() {
@@ -91,9 +109,12 @@ public class RegistroConsultaBean implements Serializable {
     public void setEps(Eps eps) {
         this.eps = eps;
     }
-    
-    public void registrarPacientes(){
-    
+       
+        
+    public void agregarPaciente() throws ExcepcionServiciosPacientes{
+        paciente = new Paciente(idPaciente,tipoidPaciente, nombrePaciente ,fechaNacimiento,eps);
+        listaPacientes.add(paciente);
+        servicepacientes.registrarNuevoPaciente(paciente);
     }
 
     //Consultas     
@@ -142,9 +163,8 @@ public class RegistroConsultaBean implements Serializable {
     }
 
     public void setCosto(long costo) {
-        this.costo = costo;
+        this.costo = costo;                
     }
-    
     
     
     

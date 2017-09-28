@@ -5,17 +5,60 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
     <h:body>
+    <p:layout style="min-width:600px;min-height:600px;">
+                                
+            <p:layoutUnit position="center" size="280" >  
+                
+                <h:form id="AgregarPaciente">
+                    
+                    REGISTRAR NUEVO PACIENTE <br/>
+                    
+                    Id:                   
+                    <p:inputText value="#{HistorialPacientes.idPaciente}"></p:inputText><br/>
+                    
+                    
+                    Tipo id:
+                    <p:inputText value="#{HistorialPacientes.tipoidPaciente}"></p:inputText><br/>
+                    
+                    
+                    Nombre:
+                    <p:inputText value="#{HistorialPacientes.nombrePaciente}"></p:inputText><br/>
+                    
+                    
+                    Fecha Nacimiento:
+                    <p:inputText value="#{HistorialPacientes.fechaNacimiento}"></p:inputText><br/>
+                    
+                    
+                               
+                    <p:outputLabel for="eps" value="Eps: " />
+                    <p:selectOneMenu id="eps" value="#{HistorialPacientes.eps}" style="width:150px">                        
+                        <f:selectItem itemLabel="Select eps" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{HistorialPacientes.epsRegistradas}" />
+                    </p:selectOneMenu><br/>                    
+                    <p:commandButton value="Registrar" id="nonAjax" actionListener="#{HistorialPacientes.agregarPaciente()}" ajax="false"/>
+                    
+                </h:form>
+            </p:layoutUnit>
         
-    Id:
-    <p:inputText value="#{RegistroConsultaBean.idPaciente}"></p:inputText>
-    
-    Tipo Id:
-    <p:inputText value="#{RegistroConsultaBean.i}"></p:inputText>
-    
-    Nombre:
-    <p:inputText value="#{RegistroConsultaBean.nombrePaciente}"></p:inputText>
-    
-        
+            <p:layoutUnit position="south" size="280" >  
+                        
+                    LISTA DE PACIENTES
+                     <p:dataTable var="ListaDePacientes" value= "#{HistorialPacientes.listaPacientes}"> 
+                        <p:column headerText="Id Paciente">                
+                            <h:outputText value="#{ListaDePacientes.id}" />
+                        </p:column>
+                        <p:column headerText="Nombre">    
+                            <h:outputText value="#{ListaDePacientes.nombre}" />
+                        </p:column>
+                        <p:column headerText="Eps">    
+                            <h:outputText value="#{ListaDePacientes.eps}" />
+                        </p:column>                        
+                    </p:dataTable>            
+                    <h:form>                    
+                        <h:commandButton action = "registroCITA" value = "Registrar Cita" />
+                    </h:form>                    
+            </p:layoutUnit>                            
+        </p:layout>       
         
     </h:body>
 </html>
