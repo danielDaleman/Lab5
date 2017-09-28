@@ -37,7 +37,7 @@
             <p:layoutUnit position="center">
                 LISTA DE CONSULTAS DEL PACIENTE<br/>
                 
-                <p:dataTable var="ListaDeConsultas" value= "#{HistorialPacientes.listaConsultas}">
+                <p:dataTable var="ListaDeConsultas" value= "#{HistorialPacientes.pacienteEnUso.consultas}">
  
                     <p:column headerText="Id Consulta">                
                         <h:outputText value="#{ListaDeConsultas.id}" />
@@ -55,7 +55,7 @@
                 </p:dataTable>
             
                 <h:form>
-                    <h:commandButton action = "registropacientes" value = "Regresar" />
+                    <h:commandButton action = "registropacientes" value = "Regresar" actionListener="#{HistorialPacientes.devolver()}" />
                 </h:form>
             
             </p:layoutUnit>

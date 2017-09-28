@@ -64,19 +64,14 @@
                             <h:outputText value="#{ListaDePacientes.eps.nombre}" />
                         </p:column>                             
                          
-                          <p:column>
+                        <p:column>
                             <f:facet name="header"></f:facet>
-                            <p:commandButton id="selectRowBtn" value="select" action="registroconsultas"/>
+                            <p:commandButton id="selectRowBtn" value="select" action="registroconsultas" actionListener="#{HistorialPacientes.seleccionarPaciente(ListaDePacientes)}"/>
                         </p:column>
                        
                      
-                    </p:dataTable>   
-                
-                    
-                
-                
-                      <p:dialog id="dialog" header="resgistroconsultas" widgetVar="registrocon"
-                        resizable="false" width="200" showEffect="clip" hideEffect="fold"></p:dialog>
+                    </p:dataTable>                                                                     
+                      
             </p:layoutUnit>                            
         </p:layout>       
         

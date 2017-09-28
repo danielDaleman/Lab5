@@ -32,7 +32,7 @@ public class Paciente {
     private String tipoId;
     private String nombre;
     private Date fechaNacimiento;
-    Set<Consulta> consultas=new LinkedHashSet<>();;
+    Set<Consulta> consultas=new LinkedHashSet<>();
     private Eps eps;
     
 

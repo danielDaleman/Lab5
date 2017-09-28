@@ -55,7 +55,14 @@ public class RegistroConsultaBean implements Serializable {
     private Eps eps;
     private final List<Eps> epsRegistradas;
     private String nombreEps;
+    
+    private Paciente pacienteEnUso;
 
+    public Paciente getPacienteEnUso() {
+        return pacienteEnUso;
+    }
+
+   
     public String getNombreEps() {
         return nombreEps;
     }
@@ -137,6 +144,10 @@ public class RegistroConsultaBean implements Serializable {
             nombresEps.add(e.getNombre());
         return nombresEps;
     }
+    
+    public void seleccionarPaciente(Paciente p){
+        this.pacienteEnUso = p;            
+    }
         
     public void agregarPaciente() throws ExcepcionServiciosPacientes{        
         
@@ -146,7 +157,12 @@ public class RegistroConsultaBean implements Serializable {
         
     }
 
-    //Consultas     
+    //Consultas  
+    
+    public void devolver(){
+        pacienteEnUso = new Paciente();
+    }
+    
     public Consulta getConsulta() {
         return consulta;
     }
@@ -206,10 +222,10 @@ public class RegistroConsultaBean implements Serializable {
     }
     
     public void registroConsultaPaciente() throws ExcepcionServiciosPacientes{
-        consulta = new Consulta(fechaConsulta,descripcionConsulta,costo);     
-        listaConsultas.add(consulta);
- 
-        servicepacientes.agregarConsultaPaciente(idPaciente, tipoidPaciente, consulta);
+        consulta = new Consulta(fechaConsulta,descripcionConsulta,costo); 
+        pacienteEnUso.getConsultas().add(consulta);                 
+       
+        servicepacientes.agregarConsultaPaciente(pacienteEnUso.getId(), pacienteEnUso.getTipoId(), consulta);
    
 
     }
