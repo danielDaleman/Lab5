@@ -39,7 +39,7 @@ public class RegistroConsultaBean implements Serializable {
 
     private final ServiciosPacientes servicepacientes = ServiciosHistorialPacientesFactory.getInstance().getServiciosPaciente();
     private Consulta consulta;
-    Set<Consulta> listaConsultas=new LinkedHashSet<>();;
+    Set<Consulta> listaConsultas;
     private int idConsulta;
     private Date fechaConsulta;
     private String descripcionConsulta;
@@ -75,6 +75,7 @@ public class RegistroConsultaBean implements Serializable {
 
     public RegistroConsultaBean() throws ExcepcionServiciosPacientes {
          epsRegistradas = servicepacientes.obtenerEPSsRegistradas(); 
+
     }
     //Pacientes
     public int getIdPaciente() {
@@ -182,10 +183,13 @@ public class RegistroConsultaBean implements Serializable {
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
     
-    public void agregarConsulta() throws ExcepcionServiciosPacientes{
-        consulta = new Consulta();     
+    public void registroConsultaPaciente() throws ExcepcionServiciosPacientes{
+        consulta = new Consulta(fechaConsulta,descripcionConsulta,costo);     
         listaConsultas.add(consulta);
-        servicepacientes.agregarConsultaPaciente(idConsulta, descripcionConsulta, consulta);
+        idPaciente=1;
+        tipoidPaciente="CC";
+        servicepacientes.agregarConsultaPaciente(idPaciente, tipoidPaciente, consulta);
+   
 
     }
 
