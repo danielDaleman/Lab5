@@ -5,45 +5,55 @@
     <h:head></h:head>
 
     <h:body>
-        <p:layoutUnit position="west">
-            <p:dataTable var="ListaDeConsultas" value= "#{HistorialPacientes.listaConsultas}">
-                <p:column headerText="Id Consulta">                
-                    <h:outputText value="#{ListaDeConsultas.id}" />
-                </p:column>
-                <p:column headerText="Fecha y Hora">    
-                    <h:outputText value="#{ListaDeConsultas.fechayHora}" />
-                </p:column>
-                <p:column headerText="Resumen">    
-                    <h:outputText value="#{ListaDeConsultas.resumen}" />
-                </p:column>
-                <p:column headerText="Costo">    
-                    <h:outputText value="#{ListaDeConsultas.costo}" />
-                </p:column>
-            </p:dataTable>
+        <p:layout style="min-width:600px;min-height:600px;">
+            <p:layoutUnit position="center">
+                LISTA DE CONSULTAS DEL PACIENTE
+                <p:dataTable var="ListaDeConsultas" value= "#{HistorialPacientes.listaConsultas}">
+ 
+                    <p:column headerText="Id Consulta">                
+                        <h:outputText value="#{ListaDeConsultas.id}" />
+                    </p:column>
+                    <p:column headerText="Fecha y Hora">    
+                       <h:outputText value="#{ListaDeConsultas.fechayHora}" />
+                    </p:column>
+                    <p:column headerText="Resumen">    
+                        <h:outputText value="#{ListaDeConsultas.resumen}" />
+                    </p:column>
+                    <p:column headerText="Costo">    
+                        <h:outputText value="#{ListaDeConsultas.costo}" />
+                    </p:column>
+                </p:dataTable>
             
-            <h:form>
-                 <h3>Regresar</h3>
-                 <h:commandButton action = "registropacientes" value = "registropacientes" />
-            </h:form>
-            
-        </p:layoutUnit>
+                <h:form>
                     
-        <p:layoutUnit position="east" resizable="true" size="300" minSize="80" maxSize="250">  
+                    <h:commandButton action = "registropacientes" value = "Regresar" />
+                </h:form>
+            
+            </p:layoutUnit>
+                    
+            <p:layoutUnit position="west" size="280" >  
                 
-            <h:form id="AgregarConsulta">                              
-                Id Consulta:
-                <p:inputText value="#{HistorialPacientes.idConsulta}"></p:inputText>
-                Fecha y Hora:
-                <p:inputText value="#{HistorialPacientes.fechaConsulta}"></p:inputText>
-                Resumen:
-                <p:inputText value="#{HistorialPacientes.descripcionConsulta}"></p:inputText>
-                Costo:
-                <p:inputText value="#{HistorialPacientes.costo}"></p:inputText>
+                <h:form id="AgregarConsulta">   
+                    
+                    REGISTRAR NUEVA CONSULTA
+                    
+                    Id Consulta:
+                    <p:inputText value="#{HistorialPacientes.idConsulta}"></p:inputText>
+                    
+                    Fecha y Hora:
+                    <p:inputText value="#{HistorialPacientes.fechaConsulta}"></p:inputText>
+                    
+                    Resumen:
+                    <p:inputText value="#{HistorialPacientes.descripcionConsulta}"></p:inputText>
+                    
+                    Costo:
+                    <p:inputText value="#{HistorialPacientes.costo}"></p:inputText>
                 
-                <p:commandButton value="Agregar Consulta" id="nonAjax" actionListener="#{HistorialPacientes.agregarConsulta()}" ajax="false"/>
-            </h:form>                              
+                    <p:commandButton value="Agregar Consulta" id="nonAjax" actionListener="#{HistorialPacientes.agregarConsulta()}" ajax="false"/>
+                </h:form>                              
                 
-        </p:layoutUnit>
+            </p:layoutUnit>
+        </p:layout>
             
     </h:body>
 
