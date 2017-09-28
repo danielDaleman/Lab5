@@ -61,7 +61,7 @@ public class ServiciosPacientesTest {
 
     @Test 
     public void testFechaRegistradaDebeSerMenorAFechaActual() throws ParseException{
-        Consulta con = new Consulta(java.sql.Date.valueOf("2000-01-01"), "Dolor de cabeza", 454);
+        Consulta con = new Consulta(java.sql.Date.valueOf("2018-01-01"), "Dolor de cabeza", 454);
         SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date actual= new Date();
         Date registrada= con.getFechayHora();
@@ -69,9 +69,9 @@ public class ServiciosPacientesTest {
         String fechaRegistrada = f1.format(registrada);
         
         SimpleDateFormat f2 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        Date nueva = (Date) f2.parse(fechaActual);
-        Date vieja = (Date) f2.parse(fechaRegistrada);
-        boolean res = vieja.before(nueva);
+        Date act = (Date) f2.parse(fechaActual);
+        Date regis = (Date) f2.parse(fechaRegistrada);
+        boolean res = act.before(regis);
         assertTrue(res);
         
     }
