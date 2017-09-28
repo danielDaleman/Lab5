@@ -39,7 +39,7 @@ public class RegistroConsultaBean implements Serializable {
 
     private final ServiciosPacientes servicepacientes = ServiciosHistorialPacientesFactory.getInstance().getServiciosPaciente();
     private Consulta consulta;
-    Set<Consulta> listaConsultas;
+    Set<Consulta> listaConsultas=new LinkedHashSet<>();
     private int idConsulta;
     private Date fechaConsulta;
     private String descripcionConsulta;
@@ -60,6 +60,7 @@ public class RegistroConsultaBean implements Serializable {
     }
     private Paciente paciente;
     Set<Paciente> listaPacientes=new LinkedHashSet<>();;
+    
 
     public Set<Paciente> getListaPacientes() {
         return listaPacientes;
@@ -143,6 +144,8 @@ public class RegistroConsultaBean implements Serializable {
         this.listaConsultas = listaConsultas;
     }
 
+    
+
     public int getIdConsulta() {
         return idConsulta;
     }
@@ -186,8 +189,7 @@ public class RegistroConsultaBean implements Serializable {
     public void registroConsultaPaciente() throws ExcepcionServiciosPacientes{
         consulta = new Consulta(fechaConsulta,descripcionConsulta,costo);     
         listaConsultas.add(consulta);
-        idPaciente=1;
-        tipoidPaciente="CC";
+ 
         servicepacientes.agregarConsultaPaciente(idPaciente, tipoidPaciente, consulta);
    
 
