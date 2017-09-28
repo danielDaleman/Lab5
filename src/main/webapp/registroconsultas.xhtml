@@ -5,9 +5,38 @@
     <h:head></h:head>
 
     <h:body>
-        <p:layout style="min-width:600px;min-height:600px;">
+        <p:layout style="min-width:800px;min-height:800px;">
+                          
+            <p:layoutUnit position="west" size="300" >  
+                
+                <h:form id="AgregarConsulta">   
+                    
+                    REGISTRAR NUEVA CONSULTA<br/>
+                    
+                            
+                    <br/>Fecha y Hora:<br/>
+                    
+                    <p:calendar locale="es"
+                                id="fechaConsulta"
+                                showOn="button"
+                                widgetVar="calFInicioParo"
+                                value="#{HistorialPacientes.fechaConsulta}"
+                                pattern="MM/dd/yyyy HH:mm"/>
+                    <br/>
+                    <br/>Resumen:<br/>
+                    <p:inputText value="#{HistorialPacientes.descripcionConsulta}"></p:inputText>
+                    <br/>
+                    <br/>Costo:<br/>
+                    <p:inputText value="#{HistorialPacientes.costo}"></p:inputText>
+                    <br/>
+                    <p:commandButton value="Agregar Consulta" id="nonAjax" actionListener="#{HistorialPacientes.registroConsultaPaciente()}" ajax="false"/>
+                </h:form>                              
+                
+            </p:layoutUnit>
+            
             <p:layoutUnit position="center">
-                LISTA DE CONSULTAS DEL PACIENTE
+                LISTA DE CONSULTAS DEL PACIENTE<br/>
+                
                 <p:dataTable var="ListaDeConsultas" value= "#{HistorialPacientes.listaConsultas}">
  
                     <p:column headerText="Id Consulta">                
@@ -29,29 +58,6 @@
                     <h:commandButton action = "registropacientes" value = "Regresar" />
                 </h:form>
             
-            </p:layoutUnit>
-                    
-            <p:layoutUnit position="west" size="280" >  
-                
-                <h:form id="AgregarConsulta">   
-                    
-                    REGISTRAR NUEVA CONSULTA
-                    
-                    Id Consulta:
-                    <p:inputText value="#{HistorialPacientes.idConsulta}"></p:inputText>
-                    
-                    Fecha y Hora:
-                    <p:inputText value="#{HistorialPacientes.fechaConsulta}"></p:inputText>
-                    
-                    Resumen:
-                    <p:inputText value="#{HistorialPacientes.descripcionConsulta}"></p:inputText>
-                    
-                    Costo:
-                    <p:inputText value="#{HistorialPacientes.costo}"></p:inputText>
-                
-                    <p:commandButton value="Agregar Consulta" id="nonAjax" actionListener="#{HistorialPacientes.agregarConsulta()}" ajax="false"/>
-                </h:form>                              
-                
             </p:layoutUnit>
         </p:layout>
             
