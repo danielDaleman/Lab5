@@ -36,7 +36,7 @@
                     <p:outputLabel for="eps" value="Eps: " />
                     <p:selectOneMenu id="eps" value="#{HistorialPacientes.eps}" style="width:150px">                        
                         <f:selectItem itemLabel="Select eps" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{HistorialPacientes.epsRegistradas}" />                                           
+                        <f:selectItems value="#{HistorialPacientes.epsRegistradas}" var ="eps" itemLabel="#{eps.nombre}" itemValue="#{eps}"/>
                     </p:selectOneMenu>                    
                     <br/>                                        
                     <pre> </pre>
@@ -49,7 +49,7 @@
             <p:layoutUnit position="south" resizable="true" size="300" minSize="300" maxSize="600" >                                             
                      <p:dataTable var="ListaDePacientes" value= "#{HistorialPacientes.listaPacientes}">                         
                         <f:facet name="header">
-                            LISTA DE PACIENTES
+                            LISTA DE PACIENTES                            
                         </f:facet> 
                         <p:column headerText="Id Paciente">                
                             <h:outputText value="#{ListaDePacientes.id}" />
@@ -59,11 +59,21 @@
                         </p:column>
                         <p:column headerText="Eps">    
                             <h:outputText value="#{ListaDePacientes.eps.nombre}" />
-                        </p:column>     
-                        <f:facet name="RegistroC">
-                            <p:commandButton process="singleDT" update="" icon="ui-icon-search" value="Registrar Cita" oncomplete="" />
-                        </f:facet>
-                    </p:dataTable>                                                    
+                        </p:column>                             
+                         
+                          <p:column>
+                            <f:facet name="header"></f:facet>
+                            <p:commandButton id="selectRowBtn" value="select" action="registroconsultas"/>
+                        </p:column>
+                       
+                     
+                    </p:dataTable>   
+                
+                    
+                
+                
+                      <p:dialog id="dialog" header="resgistroconsultas" widgetVar="registrocon"
+                        resizable="false" width="200" showEffect="clip" hideEffect="fold"></p:dialog>
             </p:layoutUnit>                            
         </p:layout>       
         

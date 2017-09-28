@@ -115,7 +115,7 @@ public class RegistroConsultaBean implements Serializable {
 
     public void setEps(Eps eps) {
         this.eps = eps;
-    }            
+    }                
     
         
     public void agregarPaciente() throws ExcepcionServiciosPacientes{
