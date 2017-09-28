@@ -5,45 +5,52 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
     <h:body>
-    <p:layout style="min-width:600px;min-height:600px;">
+    <p:layout style="min-width:800px;min-height:800px;">
                                 
-            <p:layoutUnit position="center" size="280" >  
+            <p:layoutUnit position="center" size="480" >  
                 
                 <h:form id="AgregarPaciente">
                     
                     REGISTRAR NUEVO PACIENTE <br/>
                     
-                    Id:                   
-                    <p:inputText value="#{HistorialPacientes.idPaciente}"></p:inputText><br/>
+                    <pre> Id:              <p:inputText value="#{HistorialPacientes.idPaciente}"></p:inputText><br/>
+                    </pre>
+                    
+                    <pre>Tipo id:          <p:inputText value="#{HistorialPacientes.tipoidPaciente}"></p:inputText><br/>
+                    </pre>
                     
                     
-                    Tipo id:
-                    <p:inputText value="#{HistorialPacientes.tipoidPaciente}"></p:inputText><br/>
+                    <pre>Nombre:           <p:inputText value="#{HistorialPacientes.nombrePaciente}"></p:inputText><br/>
+                    </pre> 
                     
+                    <pre><h:outputText value="Fecha Nacimiento:"/>
+                    <p:calendar locale="es"
+                                id="fechaNacimientoPaciente"
+                                showOn="button"
+                                widgetVar="calFInicioParo"
+                                value="#{HistorialPacientes.fechaNacimiento}"
+                                pattern="MM/dd/yyyy"/>
+                    </pre>
                     
-                    Nombre:
-                    <p:inputText value="#{HistorialPacientes.nombrePaciente}"></p:inputText><br/>
-                    
-                    
-                    Fecha Nacimiento:
-                    <p:inputText value="#{HistorialPacientes.fechaNacimiento}"></p:inputText><br/>
-                    
-                    
-                               
+                    <br/>                               
                     <p:outputLabel for="eps" value="Eps: " />
                     <p:selectOneMenu id="eps" value="#{HistorialPacientes.eps}" style="width:150px">                        
                         <f:selectItem itemLabel="Select eps" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{HistorialPacientes.epsRegistradas}" />
-                    </p:selectOneMenu><br/>                    
+                        <f:selectItems value="#{HistorialPacientes.epsRegistradas}" />                                           
+                    </p:selectOneMenu>                    
+                    <br/>                                        
+                    <pre> </pre>
+                    
                     <p:commandButton value="Registrar" id="nonAjax" actionListener="#{HistorialPacientes.agregarPaciente()}" ajax="false"/>
                     
                 </h:form>
             </p:layoutUnit>
         
-            <p:layoutUnit position="south" size="280" >  
-                        
-                    LISTA DE PACIENTES
-                     <p:dataTable var="ListaDePacientes" value= "#{HistorialPacientes.listaPacientes}"> 
+            <p:layoutUnit position="south" resizable="true" size="300" minSize="300" maxSize="600" >                                             
+                     <p:dataTable var="ListaDePacientes" value= "#{HistorialPacientes.listaPacientes}">                         
+                        <f:facet name="header">
+                            LISTA DE PACIENTES
+                        </f:facet> 
                         <p:column headerText="Id Paciente">                
                             <h:outputText value="#{ListaDePacientes.id}" />
                         </p:column>
@@ -51,12 +58,12 @@
                             <h:outputText value="#{ListaDePacientes.nombre}" />
                         </p:column>
                         <p:column headerText="Eps">    
-                            <h:outputText value="#{ListaDePacientes.eps}" />
-                        </p:column>                        
-                    </p:dataTable>            
-                    <h:form>                    
-                        <h:commandButton action = "registroCITA" value = "Registrar Cita" />
-                    </h:form>                    
+                            <h:outputText value="#{ListaDePacientes.eps.nombre}" />
+                        </p:column>     
+                        <f:facet name="RegistroC">
+                            <p:commandButton process="singleDT" update="" icon="ui-icon-search" value="Registrar Cita" oncomplete="" />
+                        </f:facet>
+                    </p:dataTable>                                                    
             </p:layoutUnit>                            
         </p:layout>       
         

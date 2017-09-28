@@ -25,6 +25,8 @@ import org.primefaces.context.RequestContext;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -51,6 +53,11 @@ public class RegistroConsultaBean implements Serializable {
     private Date fechaNacimiento;
     private Eps eps;
     private final List<Eps> epsRegistradas;
+
+    @Override
+    public String toString() {
+        return "RegistroConsultaBean{" + "epsRegistradas=" + epsRegistradas + '}';
+    }
     private Paciente paciente;
     Set<Paciente> listaPacientes=new LinkedHashSet<>();;
 
@@ -108,10 +115,11 @@ public class RegistroConsultaBean implements Serializable {
 
     public void setEps(Eps eps) {
         this.eps = eps;
-    }
-       
+    }            
+    
         
     public void agregarPaciente() throws ExcepcionServiciosPacientes{
+        this.eps = new Eps("Compensar","12345");        
         paciente = new Paciente(idPaciente,tipoidPaciente, nombrePaciente ,fechaNacimiento,eps);
         listaPacientes.add(paciente);
         servicepacientes.registrarNuevoPaciente(paciente);
