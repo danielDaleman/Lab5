@@ -53,13 +53,27 @@
             <version>4.1.0</version>
             <classifier>classes</classifier>
         </dependency>
+        
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency> 
-
+            
+        <!-- MyBatis, Mybatis-Guice -->       
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-guice</artifactId>
+            <version>3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.5</version>
+            <type>jar</type>
+        </dependency>
+        
         <!-- logger -->       
         <dependency>
             <groupId>log4j</groupId>
@@ -75,7 +89,6 @@
         </dependency>
 
         
-        <!-- logger -->
         
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -109,7 +122,21 @@
         </dependency>
         <!--security-->
         
+        <!-- Dependencias de MySQL y H2 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.36</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.191</version>
+        </dependency>
+        
     </dependencies>
+    
     
     <reporting>
         <plugins>
