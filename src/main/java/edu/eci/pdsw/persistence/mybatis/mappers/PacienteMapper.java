@@ -1,4 +1,4 @@
-package edu.eci.pdsw.persistence.impl.mappers;
+package edu.eci.pdsw.persistence.mybatis.mappers;
 
 
 
