@@ -5,10 +5,19 @@
  */
 package edu.eci.pdsw.persistence;
 
+import edu.eci.pdsw.samples.entities.Eps;
+import edu.eci.pdsw.samples.entities.Paciente;
+import java.util.List;
+
 /**
  *
  * @author USER
  */
 public interface PacienteDAO {
+    public List<Paciente> loadAll();
+    public Paciente load();
+    public Paciente loadByID(int id, String tipoid);
+    public void save();
+    public void update(Paciente p);
     
 }

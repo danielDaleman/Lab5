@@ -31,12 +31,22 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.google.inject.Inject;
+import edu.eci.pdsw.persistence.EPSDAO;
+import edu.eci.pdsw.persistence.PacienteDAO;
 
 /**
  *
  * @author hcadavid
  */
 public class ServiciosPacientesMock implements ServiciosPacientes {
+    
+    @Inject
+    private PacienteDAO pd;
+    
+    @Inject
+    private EPSDAO ed;
+    
 
     private final Map<Tupla<Integer, String>, Paciente> pacientes;
     private final List<Eps> epsregistradas;
