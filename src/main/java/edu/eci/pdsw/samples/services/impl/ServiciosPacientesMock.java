@@ -35,6 +35,7 @@ import com.google.inject.Inject;
 import edu.eci.pdsw.persistence.EPSDAO;
 import edu.eci.pdsw.persistence.PacienteDAO;
 import javax.persistence.PersistenceException;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -79,18 +80,24 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
         }
         
     }
-
+    
+    @Transactional
     @Override
     public void agregarConsultaPaciente(int idPaciente, String tipoid, Consulta consulta) throws ExcepcionServiciosPacientes {
         
-        Paciente paciente = pacientes.get(new Tupla<>(idPaciente, tipoid));
+        /**Paciente paciente = pacientes.get(new Tupla<>(idPaciente, tipoid));
         if (paciente != null) {
             consulta.setId(idconsulta);
             idconsulta++;
             paciente.getConsultas().add(consulta);
         } else {
             throw new ExcepcionServiciosPacientes("Paciente " + idPaciente + " no esta registrado");
-        }
+        }**/
+        try {
+            pacienteDAO.save();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(ServiciosPacientesMock.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
     @Override

@@ -11,6 +11,7 @@ import edu.eci.pdsw.persistence.mybatis.mappers.PacienteMapper;
 import edu.eci.pdsw.samples.entities.Paciente;
 import java.sql.Date;
 import java.util.List;
+import javax.persistence.PersistenceException;
 
 /**
  *
@@ -32,8 +33,12 @@ public class PacienteDAOMyBATIS  implements PacienteDAO{
     }
 
     @Override
-    public Paciente loadByID(int id, String tipoid) {
-        return pamap.loadPacienteById(id, tipoid);
+    public Paciente loadByID(int id, String tipoid) throws PersistenceException {
+        try{
+            return pamap.loadPacienteById(id, tipoid);
+        }catch(Exception e){
+            throw new PersistenceException("Error al cargar el paciente por ID",e);
+        }        
     }
 
     @Override
@@ -42,8 +47,12 @@ public class PacienteDAOMyBATIS  implements PacienteDAO{
     }
 
     @Override
-    public void update(Paciente p) {
-        pamap.actualizarPaciente(p, "", new Date(02/02/02) , "");
+    public void update(Paciente p) throws PersistenceException{
+        try{
+            pamap.actualizarPaciente(p, "", new Date(02/02/02) , "");
+        }catch(Exception e){
+            throw new PersistenceException("Error al actualizar el paciente "+p.getId(),e);
+        }
     }
 
     

@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.PersistenceException;
 
 /**
  *
@@ -26,9 +27,12 @@ public class EPSDAOMyBATIS implements EPSDAO{
     private EpsMapper epsmap;
 
     @Override
-    public List<Eps> loadAll() {                             
-        return epsmap.loadAllEps();
-        
+    public List<Eps> loadAll() throws PersistenceException{
+        try{
+            return epsmap.loadAllEps();
+        }catch(Exception e){
+            throw new PersistenceException("Error al cargar todas las Eps ",e);
+        }               
     }
 
     @Override
