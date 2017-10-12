@@ -23,6 +23,6 @@ public interface PacienteMapper {
     
     public void insertConsulta(@Param("con") Consulta con,@Param("idp") int idPaciente,@Param("tipoidp") String tipoid,@Param("costoc") int costoconsulta);
     
-    public void actualizarPaciente(@Param("pacientea") Paciente p); 
+    public void actualizarPaciente(@Param("pacientea") Paciente p, @Param("nombre") String nombre, @Param("fecha_nacimiento") Date fecha_nacimiento,@Param("eps_nit") String eps_nit); 
 
 }

@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 import edu.eci.pdsw.persistence.PacienteDAO;
 import edu.eci.pdsw.persistence.mybatis.mappers.PacienteMapper;
 import edu.eci.pdsw.samples.entities.Paciente;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
 public class PacienteDAOMyBATIS  implements PacienteDAO{
     
     @Inject
-    private PacienteMapper epsmap;
+    private PacienteMapper pamap;
 
     @Override
     public List<Paciente> loadAll() {
@@ -32,7 +33,7 @@ public class PacienteDAOMyBATIS  implements PacienteDAO{
 
     @Override
     public Paciente loadByID(int id, String tipoid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pamap.loadPacienteById(id, tipoid);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class PacienteDAOMyBATIS  implements PacienteDAO{
 
     @Override
     public void update(Paciente p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pamap.actualizarPaciente(p, "", new Date(02/02/02) , "");
     }
 
     

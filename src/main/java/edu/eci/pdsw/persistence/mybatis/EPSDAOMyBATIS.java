@@ -10,6 +10,10 @@ import edu.eci.pdsw.persistence.EPSDAO;
 import edu.eci.pdsw.persistence.mybatis.mappers.EpsMapper;
 import edu.eci.pdsw.persistence.mybatis.mappers.PacienteMapper;
 import edu.eci.pdsw.samples.entities.Eps;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -22,9 +26,9 @@ public class EPSDAOMyBATIS implements EPSDAO{
     private EpsMapper epsmap;
 
     @Override
-    public List<Eps> loadAll() {
+    public List<Eps> loadAll() {                             
+        return epsmap.loadAllEps();
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

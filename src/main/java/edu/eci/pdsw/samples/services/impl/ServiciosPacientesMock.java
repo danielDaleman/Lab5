@@ -34,6 +34,7 @@ import java.util.logging.Logger;
 import com.google.inject.Inject;
 import edu.eci.pdsw.persistence.EPSDAO;
 import edu.eci.pdsw.persistence.PacienteDAO;
+import javax.persistence.PersistenceException;
 
 /**
  *
@@ -42,10 +43,10 @@ import edu.eci.pdsw.persistence.PacienteDAO;
 public class ServiciosPacientesMock implements ServiciosPacientes {
     
     @Inject
-    private PacienteDAO pd;
+    private PacienteDAO pacienteDAO;
     
     @Inject
-    private EPSDAO ed;
+    private EPSDAO epsDAO;
     
 
     private final Map<Tupla<Integer, String>, Paciente> pacientes;
@@ -55,7 +56,7 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
     public ServiciosPacientesMock() {
         this.pacientes = new LinkedHashMap<>();
         epsregistradas = new LinkedList<>();
-        cargarDatosEstaticos(pacientes);
+        cargarDatosEstaticos(pacientes);                
     }
 
     @Override
@@ -215,8 +216,7 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
             }
         }        
         return null;
-    }
-
+    }   
 }
 
 class Tupla<A, B> {
@@ -250,6 +250,8 @@ class Tupla<A, B> {
         } else {
             return false;
         }
+        
+        
     }
 
     @Override

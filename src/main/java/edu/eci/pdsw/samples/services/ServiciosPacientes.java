@@ -23,6 +23,7 @@ import edu.eci.pdsw.samples.entities.Paciente;
 import java.util.Date;
 
 import java.util.List;
+import javax.persistence.PersistenceException;
 
 /**
  *
@@ -107,7 +108,10 @@ public interface ServiciosPacientes {
      */
     public abstract List<Eps> obtenerEPSsRegistradas() throws ExcepcionServiciosPacientes;
 
-    public Eps obtenerEps(String nombreEps);
+    
+    public Eps obtenerEps(String nombreEps);    
+    
+   
     
     
     
