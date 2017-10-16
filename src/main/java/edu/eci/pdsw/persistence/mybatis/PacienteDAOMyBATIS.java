@@ -28,7 +28,7 @@ public class PacienteDAOMyBATIS  implements PacienteDAO{
     }
 
     @Override
-    public Paciente load() {
+    public Paciente load(Paciente p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

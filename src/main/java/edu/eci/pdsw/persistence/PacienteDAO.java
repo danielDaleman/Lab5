@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface PacienteDAO {
     public List<Paciente> loadAll();
-    public Paciente load();
+    public Paciente load(Paciente p);
     public Paciente loadByID(int id, String tipoid);
     public void save();
     public void update(Paciente p);

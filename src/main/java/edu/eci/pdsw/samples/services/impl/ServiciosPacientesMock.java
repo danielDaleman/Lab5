@@ -51,7 +51,7 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
     
 
     private final Map<Tupla<Integer, String>, Paciente> pacientes;
-    private final List<Eps> epsregistradas;
+    private List<Eps> epsregistradas;
     private int idconsulta = 1;
 
     public ServiciosPacientesMock() {
@@ -60,23 +60,39 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
         cargarDatosEstaticos(pacientes);                
     }
 
+    @Transactional
     @Override
     public Paciente consultarPaciente(int idPaciente, String tipoid) throws ExcepcionServiciosPacientes {
-        Paciente paciente = pacientes.get(new Tupla<>(idPaciente, tipoid));
+        /**Paciente paciente = pacientes.get(new Tupla<>(idPaciente, tipoid));
         if (paciente == null) {
             throw new ExcepcionServiciosPacientes("Paciente " + idPaciente + " no esta registrado");
         } else {
             return paciente;
+        }**/
+        Paciente paciente = null;
+        try{
+            paciente = pacienteDAO.loadByID(idPaciente, tipoid);
+        }catch(PersistenceException e){
+            Logger.getLogger(ServiciosPacientesMock.class.getName()).log(Level.SEVERE, null, e);
         }
-
+        
+        return paciente;
     }
+        
 
+    
+    @Transactional
     @Override
     public void registrarNuevoPaciente(Paciente paciente) throws ExcepcionServiciosPacientes {
-        if(paciente != null){
+        /**if(paciente != null){
             pacientes.put(new Tupla<>(paciente.getId(), paciente.getTipoId()), paciente);
         }else{
             throw new ExcepcionServiciosPacientes("El paciente no tiene ningun dato para ser registrado");
+        }**/
+        try{
+            pacienteDAO.load(paciente);
+        }catch(PersistenceException e){
+            Logger.getLogger(ServiciosPacientesMock.class.getName()).log(Level.SEVERE, null, e);
         }
         
     }
@@ -99,14 +115,21 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
             Logger.getLogger(ServiciosPacientesMock.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
-
+    
+    @Transactional
     @Override
     public List<Paciente> consultarPacientes() throws ExcepcionServiciosPacientes {
         List<Paciente> temp = new ArrayList<>();
-        temp.addAll(pacientes.values());
+        try{
+            temp = pacienteDAO.loadAll();
+        }catch(PersistenceException e){
+             Logger.getLogger(ServiciosPacientesMock.class.getName()).log(Level.SEVERE, null, e);
+        }        
+        //temp.addAll(pacientes.values());
         return temp;
     }
-
+    
+    @Transactional
     @Override
     public List<Consulta> obtenerConsultasEpsPorFecha(String nameEps, Date fechaInicio, Date fechaFin) throws ExcepcionServiciosPacientes {
         List<Consulta> temp = new ArrayList<>();
@@ -121,7 +144,8 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
         }
         return temp;
     }
-
+    
+    @Transactional
     @Override
     public List<Consulta> obtenerConsultasEps(String nameEps) throws ExcepcionServiciosPacientes {
         List<Consulta> temp = new ArrayList<>();
@@ -135,7 +159,8 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
         }
         return temp;
     }
-
+    
+    @Transactional
     @Override
     public long obtenerCostoEpsPorFecha(String nameEps, Date fechaInicio, Date fechaFin) throws ExcepcionServiciosPacientes {
         long deuda = 0;
@@ -210,8 +235,15 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
 
     }
     
+    @Transactional
     @Override
     public List<Eps> obtenerEPSsRegistradas() throws ExcepcionServiciosPacientes {
+        try{    
+            epsregistradas= epsDAO.loadAll();
+        }catch(PersistenceException e){
+            Logger.getLogger(ServiciosPacientesMock.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
         return epsregistradas;
     }
 
