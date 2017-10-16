@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.persistence;
 
+import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Eps;
 import edu.eci.pdsw.samples.entities.Paciente;
 import java.util.List;
@@ -15,9 +16,9 @@ import java.util.List;
  */
 public interface PacienteDAO {
     public List<Paciente> loadAll();
-    public Paciente load(Paciente p);
+    public void load(Paciente p);
     public Paciente loadByID(int id, String tipoid);
-    public void save();
+    public void save(Consulta c, int id, String tipoId, int costo);
     public void update(Paciente p);
     
 }

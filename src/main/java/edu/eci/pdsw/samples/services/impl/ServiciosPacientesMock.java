@@ -110,7 +110,7 @@ public class ServiciosPacientesMock implements ServiciosPacientes {
             throw new ExcepcionServiciosPacientes("Paciente " + idPaciente + " no esta registrado");
         }**/
         try {
-            pacienteDAO.save();
+            pacienteDAO.save(consulta, idPaciente, tipoid, idconsulta);
         } catch (PersistenceException ex) {
             Logger.getLogger(ServiciosPacientesMock.class.getName()).log(Level.SEVERE, null, ex);
         } 

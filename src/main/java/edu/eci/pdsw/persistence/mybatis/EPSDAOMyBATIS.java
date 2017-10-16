@@ -28,11 +28,14 @@ public class EPSDAOMyBATIS implements EPSDAO{
 
     @Override
     public List<Eps> loadAll() throws PersistenceException{
+        List <Eps> epss = null;
         try{
-            return epsmap.loadAllEps();
+            epss = epsmap.loadAllEps();
         }catch(Exception e){
             throw new PersistenceException("Error al cargar todas las Eps ",e);
-        }               
+        }
+        
+        return epss;
     }
 
     @Override

@@ -8,6 +8,7 @@ package edu.eci.pdsw.persistence.mybatis;
 import com.google.inject.Inject;
 import edu.eci.pdsw.persistence.PacienteDAO;
 import edu.eci.pdsw.persistence.mybatis.mappers.PacienteMapper;
+import edu.eci.pdsw.samples.entities.Consulta;
 import edu.eci.pdsw.samples.entities.Paciente;
 import java.sql.Date;
 import java.util.List;
@@ -24,12 +25,24 @@ public class PacienteDAOMyBATIS  implements PacienteDAO{
 
     @Override
     public List<Paciente> loadAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Paciente> pacientes = null; 
+        try{
+            pacientes = pamap.loadPacientes();
+        }catch(PersistenceException e){
+            throw new PersistenceException("Error al cargar todos los pacientes",e);
+        }        
+        return pacientes;
     }
 
     @Override
-    public Paciente load(Paciente p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void load(Paciente p) {
+        Paciente paciente;
+        try{
+            pamap.insertarPaciente(p);
+        }catch(PersistenceException e){
+             throw new PersistenceException("Error al insertar paciente"+p.getId(),e);
+        }        
+        
     }
 
     @Override
@@ -42,8 +55,13 @@ public class PacienteDAOMyBATIS  implements PacienteDAO{
     }
 
     @Override
-    public void save() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void save(Consulta c, int id, String tipoId, int costo) {
+         try{
+            pamap.insertConsulta(c, id, tipoId, costo);
+                    
+        }catch(Exception e){
+            throw new PersistenceException("Error al guardar la consulta "+c.getId()+" al paciente "+id,e);
+        }
     }
 
     @Override
