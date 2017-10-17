@@ -20,6 +20,7 @@ public class ServiciosHistorialPacientesFactory {
     private static ServiciosHistorialPacientesFactory instance = new ServiciosHistorialPacientesFactory();
 
     private static Injector injector;
+    private static Injector testinjector;
 
     public ServiciosHistorialPacientesFactory() {
 
